@@ -16,7 +16,7 @@ export async function createGame(game){
 export async function getGames() {
     const response = await client
         .from('games')
-        .select('*');
+        .select();
 
     return checkError(response);    
 }

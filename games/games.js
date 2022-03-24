@@ -4,18 +4,18 @@ import {
     getGames,
     createGame,
 } from '../fetch-utils.js';
-import { renderGame, renderTeam } from '../render-utils.js';
+import { renderGame } from '../render-utils.js';
 
 const currentGameEl = document.getElementById('current-game-container');
 const logoutButton = document.getElementById('logout');
 const pastGamesEl = document.getElementById('past-games-container');
 
 const nameForm = document.getElementById('name-form');
-const teamOneAddButton = document.getElementById('teamoneadd-button');
+const teamOneAddButton = document.getElementById('team-one-add-button');
 const teamTwoAddButton = document.getElementById('team-two-add-button');
 const teamOneSubtractButton = document.getElementById('team-one-subtract-button');
 const teamTwoSubtractButton = document.getElementById('team-two-subtract-button');
-const finishGameButton = document.getElementById('finishgamebutton');
+const finishGameButton = document.getElementById('finish-game-button');
 const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
 
@@ -34,7 +34,7 @@ nameForm.addEventListener = ('submit', (e) => {
     e.preventDefault();
 
     const formData = new FormData(nameForm);
-  
+
     const name1 = formData.get('team-1');
     const name2 = formData.get('team-2');
 
@@ -118,8 +118,8 @@ logoutButton.addEventListener('click', () => {
     logout();
 });
 
-window.addEventListener('load', () => {
-    const games = getGames();
+window.addEventListener('load', async() => {
+    const games = await getGames();
 
     if (games) {
         pastGames = games;
