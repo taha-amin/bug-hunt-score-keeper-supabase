@@ -4,10 +4,11 @@ import {
     getGames,
     createGame,
 } from '../fetch-utils.js';
-import { displayGame } from '../render-utils.js';
+import { renderGame, renderTeam } from '../render-utils.js';
 
 const currentGameEl = document.getElementById('current-game-container');
 const logoutButton = document.getElementById('logout');
+const pastGamesEl = document.getElementById('past-games-container');
 
 const nameForm = document.getElementById('name-form');
 const teamOneAddButton = document.getElementById('teamoneadd-button');
@@ -30,6 +31,8 @@ let currentGame = {
 };
 
 nameForm.addEventListener = ('submit', (e) => {
+    e.preventDefault();
+
     const formData = new FormData(nameForm);
   
     const name1 = formData.get('team-1');
@@ -81,6 +84,8 @@ function displayCurrentGameEl() {
 
 
 function displayAllGames() {
+    pastGamesEl.textContent = '';
+
     for (let game of pastGames) {
         const gameEl = displayGame(game);
 
